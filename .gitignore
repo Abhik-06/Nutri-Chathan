@@ -1,0 +1,18 @@
+# CMake compile files. Every member must generate their own build folder locally, and may not be shared
+build/
+out/
+
+# Massive vcpkg OR_tools package is huge and too cumbersome to be shared, tiny vcpkg.json files may be shared instead
+vcpkg_installed/
+
+# Device specific CMake cache files
+.cache/
+
+# Pranav operates a Mac,thus created hidden DS_Store files will just be useless clutter for windows and mac users
+.DS_Store
+
+# Unnecessary windows executables
+*.exe
+
+# Unnecessary C++ object files
+*.o
