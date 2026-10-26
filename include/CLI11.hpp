@@ -4637,7 +4637,7 @@ class Bound : public Validator {
     /// This bounds a value with min and max inclusive.
     ///
     /// Note that the constructor is templated, but the struct is not, so C++17 is not
-    /// needed to provide nice syntax for Range(a,b).
+    
     template <typename T> Bound(T min_val, T max_val) {
         std::stringstream out;
         out << detail::type_name<T>() << " bounded to [" << min_val << " - " << max_val << "]";
@@ -6164,22 +6164,22 @@ class Option : public OptionBase<Option> {
         int t = type_size_max_;
         return detail::checked_multiply(t, expected_max_) ? t : detail::expected_max_vector_size;
     }
-    /// The total min number of expected  string values to be used
+    
     CLI11_NODISCARD int get_items_expected() const { return get_items_expected_min(); }
 
-    /// True if the argument can be given directly
+    
     CLI11_NODISCARD bool get_positional() const { return !pname_.empty(); }
 
-    /// True if option has at least one non-positional name
+    
     CLI11_NODISCARD bool nonpositional() const { return (!lnames_.empty() || !snames_.empty()); }
 
-    /// True if option has description
+    
     CLI11_NODISCARD bool has_description() const { return !description_.empty(); }
 
-    /// Get the description
+    
     CLI11_NODISCARD const std::string &get_description() const { return description_; }
 
-    /// Set the description
+    
     Option *description(std::string option_description) {
         description_ = std::move(option_description);
         return this;
@@ -6250,13 +6250,13 @@ class Option : public OptionBase<Option> {
     /// Puts a result at the end and get a count of the number of arguments actually added
     Option *add_result(std::string s, int &results_added);
 
-    /// Puts a result at the end
+    
     Option *add_result(std::vector<std::string> s);
 
-    /// Get the current complete results set
+    
     CLI11_NODISCARD const results_t &results() const { return results_; }
 
-    /// Get a copy of the results
+    
     CLI11_NODISCARD results_t reduced_results() const;
 
     /// Get the results as a specified type
@@ -6291,7 +6291,7 @@ class Option : public OptionBase<Option> {
             } else {
                 res = reduced_results();
             }
-            // store the results in a stable location if the output is a view
+            
             proc_results_ = std::move(res);
             retval = detail::lexical_conversion<T, T>(proc_results_, output);
         }
@@ -6341,14 +6341,14 @@ class Option : public OptionBase<Option> {
     /// Capture the default value from the original value (if it can be captured)
     Option *capture_default_str();
 
-    /// Set the default value string representation (does not change the contained value)
+    
     Option *default_str(std::string val) {
         default_str_ = std::move(val);
         return this;
     }
 
     /// Set the default value and validate the results and run the callback if appropriate to set the value into the
-    /// bound value only available for types that can be converted to a string
+    
     template <typename X> Option *default_val(const X &val) {
         std::string val_str = detail::value_string(val);
         auto old_option_state = current_option_state_;
@@ -6381,7 +6381,7 @@ class Option : public OptionBase<Option> {
         return this;
     }
 
-    /// Get the full typename for this option
+    
     CLI11_NODISCARD std::string get_type_name() const;
 
   private:
@@ -6393,10 +6393,10 @@ class Option : public OptionBase<Option> {
     */
     void _reduce_results(results_t &out, const results_t &original) const;
 
-    // Run a result through the Validators
+    
     std::string _validate(std::string &result, int index) const;
 
-    /// Add a single result to the result set, taking into account delimiters
+    
     int _add_result(std::string &&result, std::vector<std::string> &res) const;
 };
 
@@ -6562,7 +6562,7 @@ CLI11_INLINE Validator *Option::get_validator(const std::string &validator_name)
 }
 
 CLI11_INLINE Validator *Option::get_validator(int index) {
-    // This is a signed int so that it is not equivalent to a pointer.
+    
     if(index >= 0 && index < static_cast<int>(validators_.size())) {
         return validators_[static_cast<decltype(validators_)::size_type>(index)].get();
     }
@@ -6595,8 +6595,6 @@ CLI11_INLINE Option *Option::excludes(Option *opt) {
     // Help text should be symmetric - excluding a should exclude b
     opt->excludes_.insert(this);
 
-    // Ignoring the insert return value, excluding twice is now allowed.
-    // (Mostly to allow both directions to be excluded by user, even though the library does it for you.)
 
     return this;
 }
