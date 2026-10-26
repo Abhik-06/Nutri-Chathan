@@ -15,7 +15,7 @@ public:
         const std::vector<Recipe>& recipes
     );
 
-    // Single-day entry point (matches your friend's PR API)
+    // Single-day entry point 
     SolveResult solve(
         const std::vector<Recipe>& recipes,
         const UserConfig& config
