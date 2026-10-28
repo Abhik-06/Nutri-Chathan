@@ -15,7 +15,7 @@ include_directories(${CMAKE_CURRENT_SOURCE_DIR}/include)
 add_executable(nutrisolve src/main.cpp src/optimization_engine.cpp)
 target_link_libraries(nutrisolve PRIVATE ortools::ortools)
 
-# Team Testing Binaries
+# Testing Binaries
 add_executable(engine_test src/engine_test.cpp src/optimization_engine.cpp)
 target_link_libraries(engine_test PRIVATE ortools::ortools)
 
