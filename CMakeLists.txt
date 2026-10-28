@@ -11,7 +11,7 @@ find_package(ortools REQUIRED)
 # Map the local header-only UI and Data libraries
 include_directories(${CMAKE_CURRENT_SOURCE_DIR}/include)
 
-# Main CLI Application
+# Define the main Nutri-Chathan application
 add_executable(nutrisolve src/main.cpp src/optimization_engine.cpp)
 target_link_libraries(nutrisolve PRIVATE ortools::ortools)
 
